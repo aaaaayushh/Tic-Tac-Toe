@@ -3,7 +3,8 @@ const playerFactory = (name)=>{
     
     return {getName}
 }; 
-
+let PLAYER1,PLAYER2;
+let t =0;
 const sub = document.getElementById('submit');
     const p1 = document.getElementById('player1');
     const p2 = document.getElementById('player2');
@@ -12,13 +13,40 @@ const sub = document.getElementById('submit');
         if(p1.value === '' || p2.value === '' || p1.value === p2.value){
             alert('Please enter valid names');
         }
-    const PLAYER1 = playerFactory(p1.value);
-    console.log(PLAYER1.getName());
-    const PLAYER2 = playerFactory(p2.value);
-    console.log(PLAYER2.getName());
+    PLAYER1 = playerFactory(p1.value);
+    //console.log(PLAYER1.getName());
+    PLAYER2 = playerFactory(p2.value);
+    //console.log(PLAYER2.getName());
+    t=1;
+    console.log(t);
     }
-const gameBoard = (()=>{
-    
+
+/*const p1 = document.getElementById('player1');
+const p2 = document.getElementById('player2');
+const game = (input1,input2)=>{
+    let PLAYER1,PLAYER2;
+    if(input1.value === '' || input2.value === '' || input1.value === input2.value){
+        alert('Please enter valid names');
+    }
+    PLAYER1 = playerFactory(input1.value);
+    PLAYER2 = playerFactory(input2.value);
+    const val = x=>{
+        x.getName();
+    }
+    return{PLAYER1,PLAYER2,val};
+}
+const sub = document.getElementById('submit');
+sub.onclick = ()=>{
+    const PLAYERS = game(p1,p2);
+    return {PLAYERS};
+}*/
+const start = document.getElementById('start');
+
+const gameBoard = ((x,y)=>{
+    /*if(temp ==1){
+        console.log(x.getName());
+        console.log(y.getName());
+    }*/
     const gameboard = [0,1,2,3,4,5,6,7,8];
     let i =0;
     const newGame = document.getElementById('new');
@@ -118,15 +146,7 @@ const gameBoard = (()=>{
                     
         }
     }
-    /*const result =(num)=>{
-        //console.log('result called');
-        if(num==0){
-            console.log('1 wins');
-            alert(PLAYER1.getName()+' wins');
-        }
-        else    
-            alert(PLAYER2.getName()+' wins');
-    }*/
+
     const checkNum = (num)=>{
         let reg = /[0-9]/;
         return reg.test(num);
@@ -140,7 +160,7 @@ const gameBoard = (()=>{
                     item.innerHTML = 'X';
                     gameboard[item.id] = 'X';   
                     if(checkRes(gameboard,item.id)){
-                        alert(PLAYER1.getName()+' wins!');
+                        alert(x.getName() + ' wins!');
                     }
                     if(!gameboard.some(checkNum)){
                         alert("Tie");
@@ -150,7 +170,7 @@ const gameBoard = (()=>{
                     item.innerHTML = 'O';
                     gameboard[item.id]= 'O';
                     if(checkRes(gameboard,item.id)){
-                        alert(PLAYER2.getName()+' wins!');
+                        alert(y.getName() + ' wins!');
                     }
                     if(!gameboard.some(checkNum)){
                         alert("Tie");
@@ -162,4 +182,8 @@ const gameBoard = (()=>{
         
     });
 
-})();
+});
+start.onclick = ()=>{
+    console.log('game started');
+    gameBoard(PLAYER1,PLAYER2);
+}
