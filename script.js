@@ -4,7 +4,7 @@ const playerFactory = (name)=>{
     return {getName}
 }; 
 let PLAYER1,PLAYER2;
-let t =0;
+/*let t =0;
 const sub = document.getElementById('submit');
     const p1 = document.getElementById('player1');
     const p2 = document.getElementById('player2');
@@ -21,25 +21,7 @@ const sub = document.getElementById('submit');
     console.log(t);
     }
 
-/*const p1 = document.getElementById('player1');
-const p2 = document.getElementById('player2');
-const game = (input1,input2)=>{
-    let PLAYER1,PLAYER2;
-    if(input1.value === '' || input2.value === '' || input1.value === input2.value){
-        alert('Please enter valid names');
-    }
-    PLAYER1 = playerFactory(input1.value);
-    PLAYER2 = playerFactory(input2.value);
-    const val = x=>{
-        x.getName();
-    }
-    return{PLAYER1,PLAYER2,val};
-}
-const sub = document.getElementById('submit');
-sub.onclick = ()=>{
-    const PLAYERS = game(p1,p2);
-    return {PLAYERS};
-}*/
+*/
 const start = document.getElementById('start');
 
 const gameBoard = ((x,y)=>{
@@ -161,8 +143,9 @@ const gameBoard = ((x,y)=>{
                     gameboard[item.id] = 'X';   
                     if(checkRes(gameboard,item.id)){
                         alert(x.getName() + ' wins!');
+                        location.reload();
                     }
-                    if(!gameboard.some(checkNum)){
+                    if(!gameboard.some(checkNum) && !checkRes(gameboard,item.id)){
                         alert("Tie");
                     }
                 }
@@ -171,8 +154,9 @@ const gameBoard = ((x,y)=>{
                     gameboard[item.id]= 'O';
                     if(checkRes(gameboard,item.id)){
                         alert(y.getName() + ' wins!');
+                        location.reload();
                     }
-                    if(!gameboard.some(checkNum)){
+                    if(!gameboard.some(checkNum) && !checkRes(gameboard,item.id)){
                         alert("Tie");
                     }
                 }
@@ -184,6 +168,14 @@ const gameBoard = ((x,y)=>{
 
 });
 start.onclick = ()=>{
+    const p1 = document.getElementById('player1');
+    const p2 = document.getElementById('player2');
+    if(p1.value === '' || p2.value === '' || p1.value === p2.value){
+        alert('Please enter valid names');
+    }
+    PLAYER1 = playerFactory(p1.value);
+    //console.log(PLAYER1.getName());
+    PLAYER2 = playerFactory(p2.value);
     console.log('game started');
     gameBoard(PLAYER1,PLAYER2);
 }
