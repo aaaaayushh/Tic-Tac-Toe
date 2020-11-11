@@ -4,31 +4,10 @@ const playerFactory = (name)=>{
     return {getName}
 }; 
 let PLAYER1,PLAYER2;
-/*let t =0;
-const sub = document.getElementById('submit');
-    const p1 = document.getElementById('player1');
-    const p2 = document.getElementById('player2');
-    sub.onclick = ()=>{
-        console.log('clicked submit');
-        if(p1.value === '' || p2.value === '' || p1.value === p2.value){
-            alert('Please enter valid names');
-        }
-    PLAYER1 = playerFactory(p1.value);
-    //console.log(PLAYER1.getName());
-    PLAYER2 = playerFactory(p2.value);
-    //console.log(PLAYER2.getName());
-    t=1;
-    console.log(t);
-    }
 
-*/
 const start = document.getElementById('start');
 
 const gameBoard = ((x,y)=>{
-    /*if(temp ==1){
-        console.log(x.getName());
-        console.log(y.getName());
-    }*/
     const gameboard = [0,1,2,3,4,5,6,7,8];
     let i =0;
     const newGame = document.getElementById('new');
